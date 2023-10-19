@@ -2,7 +2,7 @@
 
 Este es el backend de una aplicación hipotética para la compra de boletos de tren bala en ciudades de México. El proyecto se encuentra en desarrollo y se está desarrollando como parte de la asignatura "Programación Web 2" de la Licenciatura en Multimedia y Animación Digital de la Facultad de Ciencias Físico Matemáticas de la Universidad Autónoma de Nuevo León (UANL).
 
-![Estela Train](/src/images/logotext/logotext.png)
+![Estela Train](/src/images/logotext.png)
 
 ## 🚀 **Características Implementadas**
 
