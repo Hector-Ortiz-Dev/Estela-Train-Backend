@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { date } from "zod";
 
 const journeySchema = new mongoose.Schema(
   {

@@ -1,4 +1,4 @@
-import Journey from "../models/journey.model";
+import Journey from "../models/journey.model.js";
 
 export const getJourneys = async (req, res) => {
   const journeys = await Journey.find();
@@ -36,15 +36,15 @@ export const getJourney = async (req, res) => {
   res.json(task);
 };
 
-export const updateJourneys = async (req, res) => {
+export const deleteJourneys = async (req, res) => {
   const task = await Journey.findByIdAndDelete(req.params.id);
   if (!task) {
     return res.status(404).json({ message: "Journey not found" });
   }
-  res.json(task);
+  return res.sendStatus(204);
 };
 
-export const deleteJourneys = async (req, res) => {
+export const updateJourneys = async (req, res) => {
   const task = await Journey.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
