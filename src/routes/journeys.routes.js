@@ -7,17 +7,19 @@ import {
   updateJourneys,
   deleteJourneys,
 } from "../controllers/journeys.controllers.js";
+import { validateSchema } from "../middlewares/validator.middleware.js";
+import { createJourneySchema } from "../schemas/journey.schema.js";
 
 const router = Router();
 
-router.get("/journeys", authRequired, getJourneys);
+router.get("/journeys", getJourneys);
 
-router.get("/journeys/:id", authRequired, getJourney);
+router.get("/journeys/:id", getJourney);
 
-router.post("/journeys", authRequired, createJourneys);
+router.post("/journeys", validateSchema(createJourneySchema), createJourneys);
 
-router.delete("/journeys/:id", authRequired, deleteJourneys);
+router.delete("/journeys/:id", deleteJourneys);
 
-router.put("/journeys/:id", authRequired, updateJourneys);
+router.put("/journeys/:id", updateJourneys);
 
 export default router;
