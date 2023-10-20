@@ -1,6 +1,8 @@
 import User from "../models/user.model.js";
 import bcryptjs from "bcryptjs";
 import { createAccessToken } from "../libs/jwt.js";
+import jwt from "jsonwebtoken";
+import { TOKEN_SECRET } from "../config.js";
 
 export const register = async (req, res) => {
   const { username, name, password } = req.body;
@@ -8,7 +10,9 @@ export const register = async (req, res) => {
   try {
     const userFound = await User.findOne({ username });
     if (userFound)
-      return res.status(400).json(["El nombre de usuario ya está en uso"]);
+      return res
+        .status(400)
+        .json({ message: ["El nombre de usuario ya está en uso"] });
 
     const passwordHash = await bcryptjs.hash(password, 10);
 
@@ -21,7 +25,11 @@ export const register = async (req, res) => {
     const userSaved = await newUser.save();
     const token = await createAccessToken({ id: userSaved._id });
 
-    res.cookie("token", token);
+    res.cookie("token", token, {
+      //sameSite: "none",
+      //secure: true,
+      //httpOnly: false,
+    });
     res.json({
       id: userSaved._id,
       username: userSaved.username,
@@ -40,9 +48,9 @@ export const login = async (req, res) => {
     const userFound = await User.findOne({ username });
 
     if (!userFound)
-      return res.status(400).json({
-        message: ["El nombre de usuario no existe"],
-      });
+      return res
+        .status(400)
+        .json({ message: ["El nombre de usuario no existe"] });
 
     const isMatch = await bcryptjs.compare(password, userFound.password);
 
@@ -84,5 +92,26 @@ export const profile = async (req, res) => {
     createdAt: userFound.createdAt,
     updatedAt: userFound.updatedAt,
   });
-  res.send("profile");
+};
+
+export const verifyToken = async (req, res) => {
+  const { token } = req.cookies;
+
+  if (!token) return res.status(400).json({ message: "No hay token" });
+
+  jwt.verify(token, TOKEN_SECRET, async (err, user) => {
+    if (err) return res.status(400).json({ message: "Token no valido" });
+
+    const userFound = await User.findById(user.id);
+    if (!userFound)
+      return res.status(401).json({ message: "Usuario no encontrado" });
+
+    return res.json({
+      id: userFound._id,
+      username: userFound.username,
+      name: userFound.name,
+      createdAt: userFound.createdAt,
+      updatedAt: userFound.updatedAt,
+    });
+  });
 };
