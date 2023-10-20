@@ -12,10 +12,10 @@ Este es el backend de una aplicación hipotética para la compra de boletos de t
 - Creación de cookies para gestionar la sesión de usuario.
 - Validación de datos de entrada.
 - Integración con una base de datos MongoDB en Atlas.
+- Implementación de rutas protegidas.
 
 ## ✒️ **Cosas por Hacer**
 
-- Implementación de rutas protegidas.
 - Operaciones CRUD para tickets.
 - Lógica de compra de boletos.
 
