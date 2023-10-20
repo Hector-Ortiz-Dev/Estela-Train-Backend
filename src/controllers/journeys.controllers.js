@@ -29,27 +29,27 @@ export const createJourneys = async (req, res) => {
 };
 
 export const getJourney = async (req, res) => {
-  const task = await Journey.findById(req.params.id);
-  if (!task) {
+  const journey = await Journey.findById(req.params.id);
+  if (!journey) {
     return res.status(404).json({ message: "Journey not found" });
   }
-  res.json(task);
+  res.json(journey);
 };
 
 export const deleteJourneys = async (req, res) => {
-  const task = await Journey.findByIdAndDelete(req.params.id);
-  if (!task) {
+  const journey = await Journey.findByIdAndDelete(req.params.id);
+  if (!journey) {
     return res.status(404).json({ message: "Journey not found" });
   }
   return res.sendStatus(204);
 };
 
 export const updateJourneys = async (req, res) => {
-  const task = await Journey.findByIdAndUpdate(req.params.id, req.body, {
+  const journey = await Journey.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
-  if (!task) {
+  if (!journey) {
     return res.status(404).json({ message: "Journey not found" });
   }
-  res.json(task);
+  res.json(journey);
 };

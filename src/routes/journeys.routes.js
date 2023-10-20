@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { authRequired } from "../middlewares/validate.token.js";
 import {
   getJourneys,
   getJourney,
