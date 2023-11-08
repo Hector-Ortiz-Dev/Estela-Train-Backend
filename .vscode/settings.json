@@ -3,5 +3,7 @@
     "docwriter.progress.trackFunctions": true,
     "docwriter.language": "Spanish",
     "docwriter.progress.trackClasses": true,
-    "docwriter.progress.trackTypes": true
+    "docwriter.progress.trackTypes": true,
+    "cmake.configureOnOpen": false,
+    "vscord.enabled": false
 }
