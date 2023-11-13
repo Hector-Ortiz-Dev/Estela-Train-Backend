@@ -1,26 +1,22 @@
 import { z } from "zod";
 
 export const createJourneySchema = z.object({
-  departure_date: z
-    .string({
-      required_error: "Falta ingresar la fecha de salida",
-    })
-    .datetime(),
-  arrival_date: z
-    .string({
-      required_error: "Falta ingresar la fecha de llegada",
-    })
-    .datetime(),
+  origin: z.string({
+    required_error: "Falta ingresar la ciudad de origen",
+  }),
+  destination: z.string({
+    required_error: "Falta ingresar la ciudad de destino",
+  }),
+  departure_date: z.string({
+    required_error: "Falta ingresar la fecha de salida",
+  }),
+  arrival_date: z.string({
+    required_error: "Falta ingresar la fecha de llegada",
+  }),
   train: z.number({
-    required_error: "Falta ingresar el numero de tren",
+    required_error: "Falta ingresar el tren",
   }),
-  status: z.string({
-    required_error: "Falta ingresar el estado",
+  price: z.number({
+    required_error: "Falta ingresar el precio",
   }),
-  id_to_city: z.string({
-    required_error: "Falta ingresar el id de la ciudad de destino",
-  }),
-  id_from_city: z.string({
-    required_error: "Falta ingresar el id de la ciudad de origen",
-  }),
-});
+  })

@@ -12,21 +12,23 @@ export const getJourneys = async (req, res) => {
 export const createJourneys = async (req, res) => {
   try {
     const {
+      origin,
+      destination,
       departure_date,
       arrival_date,
       train,
-      status,
-      id_to_city,
-      id_from_city,
+      price,
+      seats
     } = req.body;
 
     const newJourney = new Journey({
+      origin,
+      destination,
       departure_date,
       arrival_date,
       train,
-      status,
-      id_to_city,
-      id_from_city,
+      price,
+      seats
     });
 
     const savedJourney = await newJourney.save();

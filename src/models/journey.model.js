@@ -2,6 +2,14 @@ import mongoose from "mongoose";
 
 const journeySchema = new mongoose.Schema(
   {
+    origin: {
+      type: String,
+      required: true,
+    },
+    destination: {
+      type: String,
+      required: true,
+    },
     departure_date: {
       type: Date,
       required: true,
@@ -14,17 +22,13 @@ const journeySchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    status: {
-      type: String,
+    price: {
+      type: Number,
       required: true,
     },
-    id_to_city: {
-      type: String,
-      required: true,
-    },
-    id_from_city: {
-      type: String,
-      required: true,
+    seats: {
+      type: Number,
+      default: 40,
     },
   },
   {
