@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   getJourneys,
   getJourney,
+  getJourneysByOriginDestinationDate,
   createJourneys,
   updateJourneys,
   deleteJourneys,
@@ -14,6 +15,11 @@ const router = Router();
 router.get("/journeys", getJourneys);
 
 router.get("/journeys/:id", getJourney);
+
+router.get(
+  "/journeys-odd/:origin/:destination/:date",
+  getJourneysByOriginDestinationDate
+);
 
 router.post("/journeys", validateSchema(createJourneySchema), createJourneys);
 

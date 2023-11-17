@@ -50,6 +50,38 @@ export const getJourney = async (req, res) => {
   }
 };
 
+export const getJourneysByOriginDestinationDate = async (req, res) => {
+  try {
+    console.log("Entering controller");
+    const origin = req.params.origin;
+    const destination = req.params.destination;
+    const date = req.params.date;
+
+    const dateBegin = new Date(date);
+    const dateEnd = new Date(date);
+    dateBegin.setDate(dateBegin.getDate());
+    dateEnd.setDate(dateEnd.getDate() + 1);
+    
+    // Buscar viajes que cumplan con el origen, destino y fecha ordenados por fecha de salida
+    const journeys = await Journey.find({
+      origin: origin,
+      destination: destination,
+      departure_date: {
+        $gte: dateBegin,
+        $lt: dateEnd
+      }
+    }).sort({departure_date: 1});
+    
+    if (!journeys) {
+      return res.status(404).json({ message: "Journey not found" });
+    }
+    res.json(journeys);
+  } catch (err) {
+    console.log(err);
+    res.status(404).json({ message: "Journey not found" });
+  }
+};
+
 export const deleteJourneys = async (req, res) => {
   try {
     const journey = await Journey.findByIdAndDelete(req.params.id);
