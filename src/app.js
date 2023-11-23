@@ -6,6 +6,7 @@ import journeyRoutes from "./routes/journeys.routes.js";
 import payMethodRoutes from "./routes/payMethods.routes.js";
 import ticketRoutes from "./routes/tickets.routes.js";
 import cityRoutes from "./routes/cities.routes.js";
+import paymentRoutes from "./routes/payment.routes.js"
 import cors from "cors";
 
 const app = express();
@@ -24,5 +25,6 @@ app.use("/api/", journeyRoutes);
 app.use("/api/", payMethodRoutes);
 app.use("/api/", ticketRoutes);
 app.use("/api/", cityRoutes);
+app.use("/api/", paymentRoutes);
 
 export default app;
