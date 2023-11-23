@@ -3,9 +3,9 @@ import { authRequired } from "../middlewares/validate.token.js";
 import {
   getTickets,
   getTicket,
-  createTickets,
-  updateTickets,
-  deleteTickets,
+  createTicket,
+  updateTicket,
+  deleteTicket,
 } from "../controllers/tickets.controllers.js";
 import { validateSchema } from "../middlewares/validator.middleware.js";
 import { createTicketSchema } from "../schemas/ticket.schema.js";
@@ -14,12 +14,12 @@ const router = Router();
 
 router.get("/tickets", authRequired, getTickets);
 
-router.get("/tickets/:id", authRequired, getTicket);
+router.get("/ticket/:id", authRequired, getTicket);
 
-router.post("/tickets", authRequired, validateSchema(createTicketSchema), createTickets);
+router.post("/ticket", authRequired, validateSchema(createTicketSchema), createTicket);
 
-router.delete("/tickets/:id", authRequired, deleteTickets);
+router.delete("/ticket/:id", authRequired, deleteTicket);
 
-router.put("/tickets/:id", authRequired, updateTickets);
+router.put("/ticket/:id", authRequired, updateTicket);
 
 export default router;

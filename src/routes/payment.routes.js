@@ -5,7 +5,7 @@ import {
     getPayment,
     updatePayment,
     deletePayment
-} from "../controllers/payment.controllers.js";
+} from "../controllers/payments.controllers.js";
 import { validateSchema } from "../middlewares/validator.middleware.js";
 import { createPaymentSchema } from "../schemas/payment.schema.js";
 

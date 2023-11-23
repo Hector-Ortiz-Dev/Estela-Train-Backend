@@ -3,11 +3,11 @@ import mongoose from "mongoose";
 const paymentSchema = new mongoose.Schema(
   {
     id_user: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
     },
     id_journey: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
       required: true,
     },
     paymentMethod: {
