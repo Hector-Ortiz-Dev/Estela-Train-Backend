@@ -3,6 +3,7 @@ import {
     getPayments,
     createPayment,
     getPayment,
+    getPaymentbyUser,
     updatePayment,
     deletePayment
 } from "../controllers/payments.controllers.js";
@@ -14,6 +15,8 @@ const router = Router();
 router.get("/payments", getPayments);
 
 router.get("/payment/:id", getPayment);
+
+router.get("/payments/:id", getPaymentbyUser);
 
 router.post("/payment", validateSchema(createPaymentSchema), createPayment);
 

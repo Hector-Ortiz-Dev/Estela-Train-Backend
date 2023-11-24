@@ -1,5 +1,4 @@
 import Ticket from "../models/ticket.model.js";
-import mongoose from "mongoose";
 
 export const getTickets = async (req, res) => {
   const tickets = await Ticket.find();
@@ -43,6 +42,25 @@ export const getTicket = async (req, res) => {
     return res.status(404).json({ message: "Ticket not found" });
   }
   res.json(ticket);
+};
+
+export const getTicketbyIdPayment = async (req, res) => {
+  try {
+    console.log(">> getTicketbyIdPayment <<");
+    const id_payment = req.params.id;
+
+    const tickets = await Ticket.find({
+      id_payment: id_payment
+    });
+
+    if(!tickets) {
+      return res.status(404).json({ message: "Tickets not found!" });
+    }
+    res.json(tickets);
+  } catch (err) {
+    console.log(err);
+    res.status(404).json({ message: "Tickets not found!" });
+  }
 };
 
 export const deleteTicket = async (req, res) => {

@@ -3,22 +3,26 @@ import mongoose from "mongoose";
 const payMethodSchema = new mongoose.Schema(
   {
     card_number: {
-      type: Number,
+      type: String,
       required: true,
     },
     month: {
-      type: Number,
+      type: String,
       required: true,
     },
     year: {
-      type: Number,
+      type: String,
       required: true,
     },
     cvv: {
-      type: Number,
+      type: String,
       required: true,
     },
-    user: {
+    active: {
+      type: Boolean,
+      default: true
+    },
+    id_user: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,

@@ -40,6 +40,22 @@ export const getPayment = async (req, res) => {
   }
 };
 
+export const getPaymentbyUser = async (req, res) => {
+  try {
+    const id_user = req.params.id;
+    const payments = await Payment.find({
+      id_user: id_user
+    });
+
+    if (!payments) {
+      return res.status(404).json({ message: "Payment not found" });
+    }
+    res.json(payments)
+  } catch (err) {
+    return res.status(404).json({ message: "Payment not found" });
+  }
+}
+
 export const updatePayment = async (req, res) => {
   try {
     const payment = await Payment.findByIdAndUpdate(req.params.id, req.body, {

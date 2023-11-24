@@ -6,6 +6,7 @@ import {
     createPayMethods,
     updatePayMethods,
     deletePayMethods,
+    getPayMethodsbyUser,
 } from "../controllers/payMethods.controllers.js";
 import { validateSchema } from "../middlewares/validator.middleware.js";
 import { createPayMethodSchema } from "../schemas/payMethod.schema.js";
@@ -14,17 +15,19 @@ const router = Router();
 
 router.get("/payMethods", authRequired, getPayMethods);
 
-router.get("/payMethods/:id", authRequired, getPayMethod);
+router.get("/payMethod/:id", authRequired, getPayMethod);
+
+router.get("/payMethods/:id", authRequired, getPayMethodsbyUser);
 
 router.post(
-  "/payMethods",
+  "/payMethod",
   authRequired,
   validateSchema(createPayMethodSchema),
   createPayMethods
 );
 
-router.delete("/payMethods/:id", authRequired, deletePayMethods);
+router.delete("/payMethod/:id", authRequired, deletePayMethods);
 
-router.put("/payMethods/:id", authRequired, updatePayMethods);
+router.put("/payMethod/:id", authRequired, updatePayMethods);
 
 export default router;

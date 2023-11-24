@@ -6,26 +6,51 @@ export const getPayMethods = async (req, res) => {
 };
 
 export const createPayMethods = async (req, res) => {
-  const { card_number, month, year, cvv } = req.body;
+  try {
+    const { card_number, month, year, cvv } = req.body;
 
-  const newPayMethod = new PayMethod({
-    card_number,
-    month,
-    year,
-    cvv,
-    user: req.user.id,
-  });
+    const newPayMethod = new PayMethod({
+      card_number,
+      month,
+      year,
+      cvv,
+      id_user: req.user.id,
+    });
 
-  const savedPayMethod = await newPayMethod.save();
-  res.json(savedPayMethod);
+    const savedPayMethod = await newPayMethod.save();
+    res.json(savedPayMethod);
+  } catch (err) {
+    res.status(500).json({ message: "Something is wrong!" });
+  }
 };
 
 export const getPayMethod = async (req, res) => {
-  const payMethod = await PayMethod.findById(req.params.id);
-  if (!payMethod) {
+  try {
+    const payMethod = await PayMethod.findById(req.params.id);
+    if (!payMethod) {
+      return res.status(404).json({ message: "Pay method not found" });
+    }
+    res.json(payMethod);
+  } catch (err) {
     return res.status(404).json({ message: "Pay method not found" });
   }
-  res.json(payMethod);
+};
+
+export const getPayMethodsbyUser = async (req, res) => {
+  try {
+    const id_user = req.params.id;
+    const payMethods = await PayMethod.find({
+      id_user: id_user,
+      active: true
+    });
+
+    if (!payMethods) {
+      return res.status(404).json({ message: "Payment methods not found" });
+    }
+    res.json(payMethods);
+  } catch (err) {
+    return res.status(404).json({ message: "Payment methods not found" });
+  }
 };
 
 export const deletePayMethods = async (req, res) => {
