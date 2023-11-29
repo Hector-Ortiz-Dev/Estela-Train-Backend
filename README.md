@@ -7,17 +7,12 @@ Este es el backend de una aplicación hipotética para la compra de boletos de t
 ## 🚀 **Características Implementadas**
 
 - Registro e inicio de sesión de usuarios (Users).
-- Operaciones CRUD para viajes (Journeys).
 - Creación y validación de tokens de autenticación.
 - Creación de cookies para gestionar la sesión de usuario.
 - Validación de datos de entrada.
 - Integración con una base de datos MongoDB en Atlas.
 - Implementación de rutas protegidas.
-
-## ✒️ **Cosas por Hacer**
-
-- Operaciones CRUD para tickets.
-- Lógica de compra de boletos.
+- CRUD para tickets, perfiles, viajes, métodos de pago, ciudades.
 
 ## 💻 **Tecnologías Utilizadas**
 
